@@ -317,8 +317,8 @@
             return;
         }
         NWLogInfo(@"Imported %i certificate%@", (int)pairs.count, pairs.count == 1 ? @"" : @"s");
-        NSUInteger index = _certificateIdentityPairs.count;
-        _certificateIdentityPairs = [_certificateIdentityPairs arrayByAddingObjectsFromArray:pairs];
+        NSUInteger index = self->_certificateIdentityPairs.count;
+        self->_certificateIdentityPairs = [self->_certificateIdentityPairs arrayByAddingObjectsFromArray:pairs];
         [self updateCertificatePopup];
         [self connectWithCertificateAtIndex:index + 1];
     }];
@@ -456,13 +456,13 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (hub) {
                     NWLogInfo(@"Connected  (%@ %@)", summary, descriptionForEnvironent(environment));
-                    _hub = hub;
+                    self->_hub = hub;
                     
                     [self enableButtonsForCertificate:certificate environment:environment];
                 } else {
                     NWLogWarn(@"Unable to connect: %@", error.localizedDescription);
                     [hub disconnect];
-                    [_certificatePopup selectItemAtIndex:0];
+                    [self->_certificatePopup selectItemAtIndex:0];
                 }
             });
         });
@@ -489,19 +489,19 @@
     dispatch_async(_serial, ^{
         NWNotification *notification = [[NWNotification alloc] initWithPayload:payload token:token identifier:0 expiration:expiry priority:priority];
         NSError *error = nil;
-        BOOL pushed = [_hub pushNotification:notification autoReconnect:YES error:&error];
+        BOOL pushed = [self->_hub pushNotification:notification autoReconnect:YES error:&error];
         if (pushed) {
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-            dispatch_after(popTime, _serial, ^(void){
+            dispatch_after(popTime, self->_serial, ^(void){
                 NSError *error = nil;
                 NWNotification *failed = nil;
-                BOOL read = [_hub readFailed:&failed autoReconnect:YES error:&error];
+                BOOL read = [self->_hub readFailed:&failed autoReconnect:YES error:&error];
                 if (read) {
                     if (!failed) NWLogInfo(@"Payload has been pushed");
                 } else {
                     NWLogWarn(@"Unable to read: %@", error.localizedDescription);
                 }
-                [_hub trimIdentifiers];
+                [self->_hub trimIdentifiers];
             });
         } else {
             NWLogWarn(@"Unable to push: %@", error.localizedDescription);
@@ -512,7 +512,7 @@
 - (void)feedback
 {
     dispatch_async(_serial, ^{
-        NWCertificateRef certificate = _selectedCertificate;
+        NWCertificateRef certificate = self->_selectedCertificate;
         if (!certificate) {
             NWLogWarn(@"Unable to connect to feedback service: no certificate selected");
             return;
@@ -521,7 +521,7 @@
         NSString *summary = [NWSecTools summaryWithCertificate:certificate];
         NWLogInfo(@"Connecting to feedback service..  (%@ %@)", summary, descriptionForEnvironent(environment));
         NSError *error = nil;
-        NWIdentityRef identity = [NWSecTools keychainIdentityWithCertificate:_selectedCertificate error:&error];
+        NWIdentityRef identity = [NWSecTools keychainIdentityWithCertificate:self->_selectedCertificate error:&error];
         NWPushFeedback *feedback = [NWPushFeedback connectWithIdentity:identity environment:[self selectedEnvironmentForCertificate:certificate] error:&error];
         if (!feedback) {
             NWLogWarn(@"Unable to connect to feedback service: %@", error.localizedDescription);
@@ -690,14 +690,14 @@
 - (void)log:(NSString *)message warning:(BOOL)warning
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        _infoField.textColor = warning ? NSColor.redColor : NSColor.controlTextColor;
-        _infoField.stringValue = message;
+        self->_infoField.textColor = warning ? NSColor.redColor : NSColor.controlTextColor;
+        self->_infoField.stringValue = message;
         if (message.length) {
-            NSDictionary *attributes = @{NSForegroundColorAttributeName: _infoField.textColor, NSFontAttributeName: [NSFont fontWithName:@"Monaco" size:10]};
+            NSDictionary *attributes = @{NSForegroundColorAttributeName: self->_infoField.textColor, NSFontAttributeName: [NSFont fontWithName:@"Monaco" size:10]};
             NSAttributedString *string = [[NSAttributedString alloc] initWithString:message attributes:attributes];
-            [_logField.textStorage appendAttributedString:string];
-            [_logField.textStorage.mutableString appendString:@"\n"];
-            [_logField scrollRangeToVisible:NSMakeRange(_logField.textStorage.length - 1, 1)];
+            [self->_logField.textStorage appendAttributedString:string];
+            [self->_logField.textStorage.mutableString appendString:@"\n"];
+            [self->_logField scrollRangeToVisible:NSMakeRange(self->_logField.textStorage.length - 1, 1)];
         }
     });
 }
