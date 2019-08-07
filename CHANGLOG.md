@@ -1,9 +1,11 @@
 Change Log
 ==========
 
-### master (unreleased)
+### develop (unreleased)
 
-* add certificate type to description
+* Add formatted JSON payloads [@EddyVerbruggen](https://github.com/EddyVerbruggen/NWPusher/tree/add_format_json_button)
+* Add Save config file and save and load payloads [@Onkiyo](https://github.com/Onkiyo/NWPusher/tree/develop)
+* Add certificate type to description
 
 ### 0.7.5 (2017-04-25)
 
