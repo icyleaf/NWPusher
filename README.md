@@ -11,15 +11,10 @@ Pusher
 
 Installation
 ------------
-Install the Mac app using [Homebrew cask](https://github.com/caskroom/homebrew-cask):
 
-```shell
-brew cask install pusher
-```
+Download the latest `Pusher.app` binary:
 
-Or download the latest `Pusher.app` binary:
-
-- [Download latest binary](https://github.com/noodlewerk/NWPusher/releases/latest)
+- [Download latest binary](https://github.com/icyleaf/NWPusher/releases/tag/0.8.0)
 
 Alternatively, you can include NWPusher as a framework, using [CocoaPods](https://cocoapods.org/):
 
