@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>payload</key>
-	<string>{&quot;aps&quot;:{&quot;alert&quot;:&quot;Testing.. (0)&quot;,&quot;badge&quot;:1,&quot;sound&quot;:&quot;default&quot;}}</string>
+	<string>{&quot;aps&quot;:{&quot;mutable-content&quot;:1,&quot;alert&quot;:&quot;Testing.. (0)&quot;,&quot;badge&quot;:1,&quot;sound&quot;:&quot;default&quot;}}</string>
 	<key>identifiers</key>
 	<dict>
 		<key>com.example.app</key>
@@ -16,6 +16,11 @@
 		</array>
 	</dict>
 	<key>savedPayloads</key>
-	<dict/>
+	<dict>
+		<key>Old Payloads</key>
+		<string>{&quot;aps&quot;:{&quot;alert&quot;:&quot;Testing.. (0)&quot;,&quot;badge&quot;:1,&quot;sound&quot;:&quot;default&quot;}}</string>
+		<key>Notification Extension Payloads</key>
+		<string>{&quot;aps&quot;:{&quot;mutable-content&quot;:1,&quot;alert&quot;:&quot;Testing.. (0)&quot;,&quot;badge&quot;:1,&quot;sound&quot;:&quot;default&quot;}}</string>
+	</dict>
 </dict>
 </plist>
