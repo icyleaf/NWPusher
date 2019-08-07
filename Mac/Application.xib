@@ -432,8 +432,8 @@
                             <action selector="loadPayload:" target="kaW-YJ-UA5" id="ggE-Xz-Ylu"/>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ztj-3C-7c9">
-                        <rect key="frame" x="425" y="13" width="83" height="32"/>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ztj-3C-7c9">
+                        <rect key="frame" x="426" y="13" width="82" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="Qjq-FC-hAl"/>
                         </constraints>
@@ -442,11 +442,12 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="formatPayload:" target="kaW-YJ-UA5" id="7qc-1W-23n"/>
+                            <action selector="formatPayload:" target="kaW-YJ-UA5" id="e8k-RJ-QYT"/>
                         </connections>
                     </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="ztj-3C-7c9" firstAttribute="baseline" secondItem="pAB-wf-piT" secondAttribute="baseline" id="0rz-Gj-Er2"/>
                     <constraint firstAttribute="trailing" secondItem="pAB-wf-piT" secondAttribute="trailing" constant="20" id="1DK-KM-tMh"/>
                     <constraint firstItem="z4n-XE-cfI" firstAttribute="trailing" secondItem="Q6j-iu-9I9" secondAttribute="trailing" id="2HK-Os-5h3"/>
                     <constraint firstItem="pAB-wf-piT" firstAttribute="top" secondItem="Q6j-iu-9I9" secondAttribute="bottom" constant="4" id="4hK-j5-BnD"/>
@@ -466,6 +467,7 @@
                     <constraint firstItem="Q6j-iu-9I9" firstAttribute="leading" secondItem="se5-gp-TjO" secondAttribute="leading" constant="20" id="Q0j-zh-MUZ"/>
                     <constraint firstItem="c5v-al-Hn5" firstAttribute="leading" secondItem="imk-VN-mp1" secondAttribute="trailing" constant="8" id="Syg-OZ-s0W"/>
                     <constraint firstItem="2E1-cP-egh" firstAttribute="top" secondItem="se5-gp-TjO" secondAttribute="top" constant="20" id="VPW-kd-JRb"/>
+                    <constraint firstItem="ztj-3C-7c9" firstAttribute="trailing" secondItem="M70-t1-JuG" secondAttribute="trailing" id="Xxi-qE-u4K"/>
                     <constraint firstItem="hU6-Ym-KR3" firstAttribute="top" secondItem="aJR-Gv-8Xr" secondAttribute="bottom" constant="8" symbolic="YES" id="ZTZ-NV-b30"/>
                     <constraint firstItem="3yK-Gl-Hp2" firstAttribute="centerY" secondItem="pFE-C0-uHw" secondAttribute="centerY" id="Zck-l4-WO3"/>
                     <constraint firstItem="z4n-XE-cfI" firstAttribute="top" secondItem="pFE-C0-uHw" secondAttribute="bottom" constant="8" id="dZh-Q6-DQs"/>
@@ -494,6 +496,7 @@
                 <outlet property="_certificatePopup" destination="aJR-Gv-8Xr" id="A43-MU-5mS"/>
                 <outlet property="_countField" destination="gQs-Aa-IJi" id="miX-ao-hNk"/>
                 <outlet property="_expiryPopup" destination="imk-VN-mp1" id="t7w-Mt-DKL"/>
+                <outlet property="_formatButton" destination="ztj-3C-7c9" id="oqo-hH-xHs"/>
                 <outlet property="_infoField" destination="M70-t1-JuG" id="dcG-qS-Mll"/>
                 <outlet property="_loadPayloadButton" destination="ch7-P2-FmP" id="deB-x5-bcE"/>
                 <outlet property="_logField" destination="pi6-RR-ayT" id="aq6-2Z-ytl"/>

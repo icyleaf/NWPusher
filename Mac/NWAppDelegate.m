@@ -18,6 +18,7 @@
     IBOutlet NSTextField *_countField;
     IBOutlet NSTextField *_infoField;
     IBOutlet NSButton *_pushButton;
+    IBOutlet NSButton *_formatButton;
     IBOutlet NSButton *_reconnectButton;
     IBOutlet NSPopUpButton *_expiryPopup;
     IBOutlet NSPopUpButton *_priorityPopup;
@@ -477,6 +478,19 @@
     NWLogInfo(@"Reconnecting to APN...(%@ %@)", summary, descriptionForEnvironent(environment));
     
     [self selectCertificate:_selectedCertificate identity:nil  environment:environment];
+}
+
+- (IBAction)formatPayload:(NSButton *)sender {
+    NSData *jsonData = [_payloadField.string dataUsingEncoding:NSUTF8StringEncoding];
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
+    // jsonObject will be nil in case the JSON data is malformed
+    if (jsonObject != nil) {
+        NSData *prettyJsonData = [NSJSONSerialization dataWithJSONObject:jsonObject options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *prettyPrintedJson = [NSString stringWithUTF8String:[prettyJsonData bytes]];
+        if (prettyPrintedJson != nil) {
+            _payloadField.string = prettyPrintedJson;
+        }
+    }
 }
 
 - (void)push
